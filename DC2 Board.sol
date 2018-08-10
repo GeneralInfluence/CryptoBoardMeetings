@@ -11,8 +11,16 @@ contract Ballot {
         uint voteCount;
     }
 
+
+
     address chairperson;
     mapping(address => Voter) voters;
+    
+    chairperson: [“0x5b2eC85Ea8706964E426f39caF39e31477050179”, “David Anderson”]
+	vicePresident: [ wallet, “Sean Gonzalez”]
+	treasurer: [ wallet, “Noah Lerman”]
+    
+    
     Proposal[] proposals;
 
     /// Create a new ballot with $(_numProposals) different proposals.
