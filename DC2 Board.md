@@ -2,7 +2,7 @@
 
 <b>Assumptions:</b>
 ```
-	quorum = 66%
+	quorum = 51%
 ```
 
 <b>Variables:</b>
