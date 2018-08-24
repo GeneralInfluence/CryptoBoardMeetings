@@ -1,12 +1,12 @@
 # DC2 Board Smart Contract Build-Out
 
-<b>Assumptions:</b>
+__Assumptions:__
 ```
 	quorum = 51%
 ```
 
-<b>Variables:</b>
-Seed contract with 3 Keys (temporarily populate variables). This “Approved Caller List” (ACL) consists of officers of the board.
+_Variables:_
+Seed contract with 3 Keys (populate variables / create first block). This “Approved Caller List” (ACL) consists of officers of the board.
 
 ```
     president: [“0x5b2eC85Ea8706964E426f39caF39e31477050179”, “David Anderson”]
@@ -19,13 +19,18 @@ For instance, if the `msg.sender`’s address doesn’t match the `president` ad
 
 *Roles will be able to be reset based on function calls to be developed.
 
-<b>Functions</b>
+## Functions
 
-*Schedule Board Meeting*
+__Schedule Board Meeting__
+Only the President can schedule a board meeting
 Creates a pending Board Meeting
 
-*Call to Order*
-Assuming only the President can call to order a board meeting, we need a function to determine if the message sender is, in fact, the president. This acts as all the authorization needed as the user verification takes place withing MetaMask (i.e. the president’s private password for the authorized wallet).
+__Call to Order__
+Only the President can call to order a board meeting, which requires the following functions: 
+* isPresident()
+** only authorization required
+** verification takes place within MetaMask (i.e. the president’s private password for the authorized wallet)
+* meetingStart()
 
 ```
 modifier onlyPresident() {
@@ -34,13 +39,11 @@ modifier onlyPresident() {
 }
 ```
 
-Yes, we need an isPresident() function.
-
-*Quorum*
+__Quorum__
 
 Assuming board members (and advisors) can authenticate they are present (likely an `attend()` function of some sort), the contract can determine if quorum is reached based on the count of active board members.
 
-*Approve Minutes*
+__Approve Minutes__
 
 Approve the minutes from the previous board meeting (assuming there are previous minutes).
 
@@ -50,7 +53,7 @@ Approve the minutes from the previous board meeting (assuming there are previous
 
 What data fields make up a board meeting? We break them into categories: Static, Ongoing, Event
 
-###Static
+### Static
 		
 _Board Members_
 
@@ -63,39 +66,39 @@ _Board Members_
 		
 Ratified Minutes
 
-###Ongoing
+### Ongoing
 Bylaws
 ? What are the legally required sections for ByLaws
 			
 		
-###Goals
+### Goals
 Active Goals for the Board	
 		
-###Policies
+### Policies
 Active - Policies that have been voted into effect.
 Consideration - Policies that are under consideration
 
 Pending <b>Minutes</b>
 
-<b>Events</b>:
+___Events__:
 	
-<i>Call to Order</i>  -> Creates An Active Meeting
-<i>Quorum</i> --> Iterates through an Agenda
-Board Meeting <b>Agenda</b>:
+*Call to Order*  -> Creates An Active Meeting
+*Quorum* --> Iterates through an Agenda
+Board Meeting __Agenda__:
 General Information of Meeting
 Actions
 		
 
 Instantiating a Board Contract:
-<b>ByLaws</b>
-Founding <b>Members</b>
+__ByLaws__
+Founding __Members__
 	
 Can our smart contract reference an Agenda JSON file and parse through.  
 
 
 Scenarios:
 
-1: <i>What if a board member loses their private key?</i> If there is no recovering the private key (perhaps there is an organization vault of seeds that requires some % vote?)
+1: *What if a board member loses their private key?* If there is no recovering the private key (perhaps there is an organization vault of seeds that requires some % vote?)
 	
 	
 	
